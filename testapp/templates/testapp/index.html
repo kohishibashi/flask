@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>テストWebアプリ</title>
+</head>
+<body>
+    <h1>index.html表示してます</h1>
+    <p>{{ my_dict.insert_something1 }}</p>
+    <p>{{ my_dict.insert_something2 }}</p>
+
+    <h2>タイトル表示</h2>
+    <ul>
+      {% for title in my_dict.test_titles %}
+        {% if title == 'title2' %}
+            <li>{{ title }}</li>
+        {% elif title == 'title3' %}
+            <li>見せられないよ</li>
+        {% else %}
+            <li>xxxx</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+</body>
+</html>
