@@ -13,4 +13,4 @@ def index():
 
 @app.route('/test')
 def other1():
-    return "テストページです！"
+    return render_template('testapp/index2.html')
