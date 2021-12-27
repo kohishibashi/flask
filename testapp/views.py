@@ -1,6 +1,10 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
+from werkzeug.utils import redirect
 from testapp import app
 from random import randint
+from testapp import db
+from testapp.models.employee import Employee
+
 
 @app.route('/')
 def index():
@@ -49,3 +53,19 @@ def sampel_form():
             'judgement': janken_mapping[judgement],
         }
         return render_template('testapp/janken_result.html', result=result)
+
+@app.route('/add_employee', methods=['GET', 'POST'])
+def add_amployee():
+    if request.method == 'GET':
+        return render_template('testapp/add_employee.html')
+    if request.method == 'POST':
+        employee = Employee(
+            name='Tanaka',
+            mail="aaa@aa.com",
+            is_remote=False,
+            department="develop",
+            year=2
+        )
+        db.session.add(employee)
+        db.session.commit()
+        return redirect(url_for('index'))

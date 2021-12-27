@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>データの追加だけ行うページ</h2>
+    <form action="/add_employee" method="POST">
+        <button type="submit" class="btn btn-primary">従業員追加</button>
+    </form>
+</div>
+{% endblock %}
