@@ -1,5 +1,4 @@
 from flask import render_template, request, redirect, url_for
-from werkzeug.utils import redirect
 from testapp import app
 from random import randint
 from testapp import db
@@ -82,8 +81,30 @@ def employee_list():
     employees = Employee.query.all()
     return render_template('testapp/employee_list.html', employees=employees)
 
+
 @app.route('/employees/<int:id>')
 def employee_detail(id):
     employee = Employee.query.get(id)
     # employee = Employee.query.filter(Employee.id == id).one()
     return render_template('testapp/employee_detail.html', employee=employee)
+
+
+@app.route('/employees/<int:id>/edit', methods=['GET'])
+def employee_edit(id):
+    # 編集ページ表示用
+    employee = Employee.query.get(id)
+    return render_template('testapp/employee_edit.html', employee=employee)
+
+
+@app.route('/employees/<int:id>/update', methods=['POST'])
+def employee_update(id):
+    employee = Employee.query.get(id)
+    employee.name = request.form.get('name')
+    employee.mail = request.form.get('mail')
+    employee.is_remote = request.form.get('is_remote', default=False, type=bool)
+    employee.department = request.form.get('department')
+    employee.year = request.form.get('year', default=0, type=int)
+
+    db.session.merge(employee)
+    db.session.commit()
+    return redirect(url_for('employee_list'))

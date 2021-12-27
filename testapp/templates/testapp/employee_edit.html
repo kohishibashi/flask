@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>データの編集ページ</h2>
+    <form action="{{ url_for('employee_update', id=employee.id) }}" method="POST">
+        <label for="name">従業員名</label>
+        <input name="name" value="{{ employee.name }}"></input>
+
+        <label for="mail">メールアドレス</label>
+        <input name="mail" value="{{ employee.mail }}"></input>
+
+        <label for="name">リモートワークの有無</label>
+        <input 
+            type="checkbox"
+            name="is_remote"
+            {% if employee.is_remote %}checked{% endif %}
+        >
+
+        <label for="department">部署</label>
+        <input name="department" value="{{ employee.department }}"></input>
+        
+        <label for="year">勤続年数</label>
+        <input type="number" name="year" min="0" value="{{ employee.year }}">
+
+        <button type="submit" class="btn btn-primary">従業員追加</button>
+    </form>
+</div>
+{% endblock %}
