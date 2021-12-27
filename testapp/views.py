@@ -75,3 +75,15 @@ def add_employee():
         db.session.add(employee)
         db.session.commit()
         return redirect(url_for('index'))
+
+
+@app.route('/employees')
+def employee_list():
+    employees = Employee.query.all()
+    return render_template('testapp/employee_list.html', employees=employees)
+
+@app.route('/employees/<int:id>')
+def employee_detail(id):
+    employee = Employee.query.get(id)
+    # employee = Employee.query.filter(Employee.id == id).one()
+    return render_template('testapp/employee_detail.html', employee=employee)
