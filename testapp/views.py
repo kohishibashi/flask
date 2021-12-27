@@ -55,16 +55,22 @@ def sampel_form():
         return render_template('testapp/janken_result.html', result=result)
 
 @app.route('/add_employee', methods=['GET', 'POST'])
-def add_amployee():
+def add_employee():
     if request.method == 'GET':
         return render_template('testapp/add_employee.html')
     if request.method == 'POST':
+        form_name = request.form.get('name')
+        form_mail = request.form.get('mail')
+        form_is_remote = request.form.get('is_remote', default=False, type=bool)
+        form_department = request.form.get('department')
+        form_year = request.form.get('year', default=0, type=int)
+
         employee = Employee(
-            name='Tanaka',
-            mail="aaa@aa.com",
-            is_remote=False,
-            department="develop",
-            year=2
+            name=form_name,
+            mail=form_mail,
+            is_remote=form_is_remote,
+            department=form_department,
+            year=form_year
         )
         db.session.add(employee)
         db.session.commit()

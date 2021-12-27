@@ -4,6 +4,21 @@
 <div class="container mt-4">
     <h2>データの追加だけ行うページ</h2>
     <form action="/add_employee" method="POST">
+        <label for="name">従業員名</label>
+        <input name="name"></input>
+
+        <label for="mail">メールアドレス</label>
+        <input name="mail"></input>
+
+        <label for="name">リモートワークの有無</label>
+        <input type="checkbox" name="is_remote">
+
+        <label for="department">部署</label>
+        <input name="department"></input>
+        
+        <label for="year">勤続年数</label>
+        <input type="number" name="year" min="0">
+
         <button type="submit" class="btn btn-primary">従業員追加</button>
     </form>
 </div>
