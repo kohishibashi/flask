@@ -19,7 +19,7 @@ def other1():
     return render_template('testapp/index2.html')
 
 @app.route('/sampleform', methods=['GET', 'POST'])
-def sampel_form():
+def sample_form():
     if request.method == 'GET':
         return render_template('testapp/sampleform.html')
     if request.method == 'POST':
@@ -85,6 +85,7 @@ def employee_list():
 @app.route('/employees/<int:id>')
 def employee_detail(id):
     employee = Employee.query.get(id)
+    # employee = Employee.query.get_or_404(id)
     # employee = Employee.query.filter(Employee.id == id).one()
     return render_template('testapp/employee_detail.html', employee=employee)
 

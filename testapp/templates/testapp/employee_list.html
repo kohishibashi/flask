@@ -19,7 +19,11 @@
             {% for employee in employees %}
             <tr>
               <th scope="row">{{ employee.id }}</th>
-              <td>{{ employee.name }}</td>
+              <td>
+                <a class="text-decoration-none" href="{{ url_for('employee_detail', id=employee.id) }}">
+                  {{ employee.name }}
+                </a>
+              </td>
               <td>{{ employee.mail }}</td>
               {% if employee.is_remote %}
                 <td>リモート</td>
