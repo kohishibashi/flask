@@ -16,7 +16,7 @@ def other1():
     return render_template('testapp/index2.html')
 
 @app.route('/sampleform', methods=['GET', 'POST'])
-def sampel_form():
+def sample_form():
     if request.method == 'GET':
         return render_template('testapp/sampleform.html')
     if request.method == 'POST':
