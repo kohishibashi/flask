@@ -108,3 +108,11 @@ def employee_update(id):
     db.session.merge(employee)
     db.session.commit()
     return redirect(url_for('employee_list'))
+
+
+@app.route('/employees/<int:id>/delete', methods=['POST'])  
+def employee_delete(id):  
+    employee = Employee.query.get(id)   
+    db.session.delete(employee)  
+    db.session.commit()  
+    return redirect(url_for('employee_list'))

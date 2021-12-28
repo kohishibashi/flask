@@ -12,6 +12,7 @@
               <th scope="col">リモート状況</th>
               <th scope="col">部署</th>
               <th scope="col">勤続年数</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -27,6 +28,11 @@
               {% endif %}
               <td>{{ employee.department }}</td>
               <td>{{ employee.year }}年</td>
+              <td>
+                <form action="{{ url_for('employee_delete', id=employee.id) }}" method="POST">  
+                  <input class="btn btn-danger btn-sm" type="submit" value="削除">  
+                </form>
+              </td>
             </tr>
             {% endfor %}
           </tbody>
